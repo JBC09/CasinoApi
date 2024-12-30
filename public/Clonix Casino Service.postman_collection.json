@@ -1,0 +1,1379 @@
+{
+	"info": {
+		"_postman_id": "32397658-d1c4-4c49-b6b6-065d62893b37",
+		"name": "Clonix Casino Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6002759",
+		"_collection_link": "https://clonix.postman.co/workspace/Clonix~89955d78-fbad-43f2-b58e-722fea39c87d/collection/6002759-32397658-d1c4-4c49-b6b6-065d62893b37?action=share&source=collection_link&creator=6002759"
+	},
+	"item": [
+		{
+			"name": "Chip Dispenser",
+			"item": [
+				{
+					"name": "ChipPresence",
+					"item": [
+						{
+							"name": "Check Chip Presence",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"url\": \"rtsp://admin:UNT20240919@192.168.0.21/Streaming/Channels/101\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7001/cc/checkchippresence",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7001",
+									"path": [
+										"cc",
+										"checkchippresence"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Check Chip Presence Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"url\": \"rtsp://admin:UNT20240919@192.168.0.21/Streaming/Channels/101\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7001/cc/checkchippresence",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7001",
+									"path": [
+										"cc",
+										"checkchippresence"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Dispense",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"price\": 100000,\r\n        \"count\": 10\r\n    },\r\n    {\r\n        \"price\": 10000,\r\n        \"count\": 10\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/chd/dispense",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"chd",
+								"dispense"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Chip Not Enough",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"price\": 10000,\r\n        \"count\": 3000\r\n    },\r\n    {\r\n        \"price\": 5000,\r\n        \"count\": 1\r\n    },\r\n    {\r\n        \"price\": 1000,\r\n        \"count\": 1\r\n    },\r\n    {\r\n        \"price\": 500,\r\n        \"count\": 1\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/chd/dispense",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"chd",
+										"dispense"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "17"
+								},
+								{
+									"key": "Server",
+									"value": "Crow/master"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Oct 2024 05:22:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": 200001\n}"
+						},
+						{
+							"name": "No Body",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/chd/dispense",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"chd",
+										"dispense"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "17"
+								},
+								{
+									"key": "Server",
+									"value": "Crow/master"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Oct 2024 05:22:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": 200001\n}"
+						}
+					]
+				},
+				{
+					"name": "Dispense By Id",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"channel\": 4,\r\n    \"count\": 120\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/chd/dispensebyid",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"chd",
+								"dispensebyid"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Chip Not Enough",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"price\": 10000,\r\n        \"count\": 3000\r\n    },\r\n    {\r\n        \"price\": 5000,\r\n        \"count\": 1\r\n    },\r\n    {\r\n        \"price\": 1000,\r\n        \"count\": 1\r\n    },\r\n    {\r\n        \"price\": 500,\r\n        \"count\": 1\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/chd/dispense",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"chd",
+										"dispense"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "17"
+								},
+								{
+									"key": "Server",
+									"value": "Crow/master"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Oct 2024 05:22:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": 200001\n}"
+						},
+						{
+							"name": "No Body",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/chd/dispense",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"chd",
+										"dispense"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "17"
+								},
+								{
+									"key": "Server",
+									"value": "Crow/master"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Oct 2024 05:22:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": 200001\n}"
+						}
+					]
+				},
+				{
+					"name": "Chip Dispense Status",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Chip Count by Price",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/chd/chipcountbyprice",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"chd",
+								"chipcountbyprice"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Chip Count by Cassette",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/chd/chipcountbycassette",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"chd",
+								"chipcountbycassette"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fill Chips",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n        {\r\n            \"count\": {\r\n                \"ch1\": 125,\r\n                \"ch2\":125,\r\n                \"ch3\":125,\r\n                \"ch4\":125\r\n            },\r\n            \"id\": 4,\r\n            \"price\": 5000\r\n        },\r\n        {\r\n            \"count\": {\r\n                \"ch1\":125,\r\n                \"ch2\":125,\r\n                \"ch3\":125,\r\n                \"ch4\":125\r\n            },\r\n            \"id\": 3,\r\n            \"price\": 1000\r\n        },\r\n        {\r\n            \"count\": {\r\n                \"ch1\":125,\r\n                \"ch2\":125,\r\n                \"ch3\":125,\r\n                \"ch4\":125\r\n            },\r\n            \"id\": 2,\r\n            \"price\": 500\r\n        },\r\n        {\r\n            \"count\": {\r\n                \"ch1\":125,\r\n                \"ch2\":125,\r\n                \"ch3\":125,\r\n                \"ch4\":125\r\n            },\r\n            \"id\": 1,\r\n            \"price\": 100\r\n        }\r\n    ]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/chd/fillchips",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"chd",
+								"fillchips"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Collection Chips",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/chd/collectionchips",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"chd",
+								"collectionchips"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Open Shutter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"open\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/chd/openshutter",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"chd",
+								"openshutter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Open Shutter Close",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"open\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/chd/openshutter",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"chd",
+								"openshutter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shutter Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/chd/shutterstatus",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"chd",
+								"shutterstatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Jam Recovery",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/chd/jamrecovery",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"chd",
+								"jamrecovery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable Channel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"channel\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/chd/channel/disable",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"chd",
+								"channel",
+								"disable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enable Channel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"channel\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/chd/channel/enable",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"chd",
+								"channel",
+								"enable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enable Channel All",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"channel\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/chd/channel/enable/all",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"chd",
+								"channel",
+								"enable",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Conveyor On",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/chd/conveyor/on",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"chd",
+								"conveyor",
+								"on"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Conveyor Off",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/chd/conveyor/off",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"chd",
+								"conveyor",
+								"off"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Led Control Board",
+			"item": [
+				{
+					"name": "Led Flash",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 0,\n    \"times\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/led/flash",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"led",
+								"flash"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Led On",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/led/on",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"led",
+								"on"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Led Off",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/led/off",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"led",
+								"off"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lock Safe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lock\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/chd/locksafe",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"chd",
+								"locksafe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Led Flash On",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/led/flashon",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"led",
+								"flashon"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Led Flash Off",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/led/flashoff",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"led",
+								"flashoff"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Passport",
+			"item": [
+				{
+					"name": "Delete Photo",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/passport/deletephoto",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"passport",
+								"deletephoto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Scan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"timeout\":10000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/passport/scan",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"passport",
+								"scan"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CashRecycler",
+			"item": [
+				{
+					"name": "Open Shutter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/car/openshutter",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"car",
+								"openshutter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "closeshutter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/car/closeshutter",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"car",
+								"closeshutter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "preparedeposit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/car/preparedeposit",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"car",
+								"preparedeposit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "canceldeposit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/car/canceldeposit",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"car",
+								"canceldeposit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "storemoney",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/car/storemoney",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"car",
+								"storemoney"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "init",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/car/init",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"car",
+								"init"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cashcount",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/car/cashcount",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"car",
+								"cashcount"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MemberCard",
+			"item": [
+				{
+					"name": "read",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"timeout\":10000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/membercard/read",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"membercard",
+								"read"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cardindisable",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/membercard/cardindisable",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"membercard",
+								"cardindisable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eject",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/membercard/eject",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"membercard",
+								"eject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "print",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"membername\":\"KIM MI SUN\",\r\n    \"membernumber\":\"240919135618\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/membercard/print",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"membercard",
+								"print"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ticket",
+			"item": [
+				{
+					"name": "print",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"membername\":\"KIM MI SUN\",\r\n    \"membernumber\":\"2410130956\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/ticket/print",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"ticket",
+								"print"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Keypad",
+			"item": [
+				{
+					"name": "waitkey",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"timeout\":10000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/keypad/waitkey",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"keypad",
+								"waitkey"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Barcode",
+			"item": [
+				{
+					"name": "read",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"timeout\":10000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/barcode/read",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"barcode",
+								"read"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FaceCamera",
+			"item": [
+				{
+					"name": "identify",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"imagepath\":\"D:\\\\ClonixCasinoService\\\\test.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/facecamera/identify",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"facecamera",
+								"identify"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Machine Ready",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/chd/shutterstatus",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"chd",
+						"shutterstatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/machine/unload",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"machine",
+						"unload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Load",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/machine/load",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"machine",
+						"load"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://127.0.0.1:7000",
+			"type": "string"
+		}
+	]
+}
