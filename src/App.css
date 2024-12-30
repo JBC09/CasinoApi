@@ -1,0 +1,196 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  transition: border-color 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 0.125rem rgba(59, 130, 246, 0.1);
+}
+
+input:disabled {
+  background-color: #f1f5f9;
+  cursor: not-allowed;
+}
+
+textarea {
+  box-sizing: border-box;
+  padding: 1.875rem;
+  width: 80%;
+  min-height: 50vh;
+  border-radius: 0.625rem;
+  outline: none;
+  border: 1px solid #ddd;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 0.125rem rgba(59, 130, 246, 0.1);
+}
+
+button {
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #3b82f6;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #2563eb;
+}
+
+button:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.app-container {
+  width: 100%;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Header 영역 */
+header {
+  width: 18.75rem;
+  height: 100vh;
+  background: #ffffff;
+  padding: 2.5rem 2vw;
+  box-sizing: border-box;
+  box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+header h1 {
+  margin-bottom: 1.875rem;
+}
+
+header a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.25rem;
+  transition: margin-left 0.35s;
+}
+
+header a.active {
+  color: #3b82f6;
+  font-weight: bold;
+}
+
+header a:hover {
+  font-weight: bold;
+  margin-left: 0.3125rem;
+}
+
+/* 메인 컨텐츠 영역 */
+.main-content {
+  background-color: aliceblue;
+  flex: 1;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: auto;
+  padding: 3rem 0rem 3rem 3rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.9375rem;
+}
+
+.form h1 {
+  margin: 0.625rem 0rem;
+  width: 90%;
+}
+
+.cassetteWrap {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4.375rem;
+}
+
+.cassetteWrap .cassette {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.form .flex {
+  display: flex;
+  gap: 0.75rem;
+}
+
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 200px;
+  padding: 10px 35px 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* 화살표 아이콘 추가 */
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8.825L1.175 4 2.238 2.938 6 6.7l3.762-3.762L10.825 4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+}
+
+/* 호버 상태 */
+select:hover {
+  border-color: #999;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 포커스 상태 */
+select:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* 비활성화 상태 */
+select:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Firefox에서 화살표 제거 */
+select::-ms-expand {
+  display: none;
+}
+
+/* 옵션 스타일링 */
+select option {
+  padding: 10px;
+  font-size: 16px;
+  background-color: white;
+  color: #333;
+}
