@@ -106,13 +106,13 @@ export const ShutterTestComp : React.FC<ShutterTestCompInterface> = ({host, shut
             {/* 셔터 테스트 제어 버튼 */}
 
             <div className={"flex"}>
-                <button onClick={openShutter}>셔터 열기</button>
-                <button onClick={closeShutter}>셔터 닫기</button>
+                <button onClick={openShutter}>Open Shutter</button>
+                <button onClick={closeShutter}>Close Shutter</button>
             </div>
             
             <div className={"flex"}>
-                <button onClick={startShutter}>테스트 시작</button>
-                <button onClick={stopShutter}>종료</button>
+                <button onClick={startShutter}>Start Test</button>
+                <button onClick={stopShutter}>Cancel</button>
             </div>
 
             <textarea

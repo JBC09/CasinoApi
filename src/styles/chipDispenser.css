@@ -1,4 +1,5 @@
 #chipDispenserWrap {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
@@ -9,25 +10,47 @@
     gap: 0.625rem;
     flex-wrap: wrap;
 }
-
+/*10639*/
 #chipDispenserWrap #tabWrap div {
-    padding: 0.625rem 1.25rem;
-    border-top: 0.25rem solid white;
+    padding: 0.5rem 1.5rem 0.7rem;
+    border-top: 0.25rem double white;
     cursor: pointer;
     font-size: 1.5rem;
-    height: 2.5rem;
-    transition: 0.35s;
+    transition: 0.35s, font-weight 0s;
+    box-sizing: border-box;
+
 }
+
+#chipDispenserWrap #tabWrap.subTab div {
+    border-top: 0.25rem double white;
+}
+
 
 #chipDispenserWrap #tabWrap div.active {
     border-top: 0.25rem solid #00AE68;
     color: white;
-    background-color: #00AE68;
+    font-weight: bold;
+    background-color: rgba(0, 174, 104, 0.65);
     border-radius: 5px;
 }
 
+#chipDispenserWrap #tabWrap.subTab div.active {
+    border-top: 0.25rem solid goldenrod;
+    background-color: gold;
+}
+
 #chipDispenserWrap #chipDispenserContents {
+    width: 100%;
     padding: 1.875rem;
+    box-sizing: border-box;
+}
+
+#chipDispenserWrap:has(> .subTab) > #chipDispenserContents h1 {
+    color: #555;
+}
+
+#chipDispenserWrap:has(> .subTab) > #chipDispenserContents {
+    padding: 0.7rem 0rem;
 }
 
 #chipDispenserWrap .chipSets {

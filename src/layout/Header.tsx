@@ -11,7 +11,7 @@ export default function Header() {
             <h1>Clonix <br/> API Control</h1>
             <Link to="/" className={location.pathname == "/" ? "active" : ""}>Main</Link>
             <Link to="/chipDispenser" className={location.pathname == "/chipDispenser" ? "active" : ""}>Chip Dispenser</Link>
-            <Link to="/reCycler" className={location.pathname == "/reCycler" ? "active" : ""}>Cache Recycler</Link>
+            <Link to="/reCycler" className={location.pathname == "/reCycler" ? "active" : ""}>Cash Recycler</Link>
         </header>
     )
 }

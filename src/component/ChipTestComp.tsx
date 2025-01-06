@@ -14,16 +14,13 @@ interface PriceCountSet {
 interface ChipTestProps {
     host: string;
     setHost: (host: string) => void;
-    textareaRef: React.RefObject<HTMLTextAreaElement>;
-    logs: string[];
-    setLogs: (logs: string[]) => void;
 }
 
 function nowDate() : string {
     return new Date().toLocaleDateString();
 }
 
-export  const ChipTestComp : React.FC<ChipTestProps> = ({host, setHost, textareaRef, setLogs, logs}) => {
+export  const ChipTestComp : React.FC<ChipTestProps> = ({host, setHost}) => {
     // 디스펜서 테스트 관련 상태
     const [sets, setSets] = useState<PriceCountSet[]>([{price: 10000, count: 20}]);  // 디스펜스할 칩 세트 목록
     const [period, setPeriod] = useState<number>(1);      // 테스트 반복 주기
@@ -36,7 +33,7 @@ export  const ChipTestComp : React.FC<ChipTestProps> = ({host, setHost, textarea
         return savedLogs ? savedLogs : 1;
     });
 
-    let isCancel = false;                                              // 테스트 취소 플래그
+    let isCancel : boolean = false;                                              // 테스트 취소 플래그
     const isCancelRef = useRef(isCancel);                             // 취소 플래그 ref
 
     const addSet = () => {
@@ -51,14 +48,7 @@ export  const ChipTestComp : React.FC<ChipTestProps> = ({host, setHost, textarea
 
 
 
-    // 일반 로그 저장 및 스크롤 위치 조정
-    useEffect(() => {
-        localStorage.setItem('logs', JSON.stringify(logs));
-        const textarea = textareaRef.current;
-        if (textarea) {
-            textarea.scrollTop = textarea.scrollHeight;
-        }
-    }, [logs]);
+
 
     // 총 테스트 횟수 저장
     useEffect(() => {
@@ -74,9 +64,14 @@ export  const ChipTestComp : React.FC<ChipTestProps> = ({host, setHost, textarea
 
     const removeSet = () => {
         const newSets = sets.slice();
-        newSets.splice(1, 1);
-        setSets(newSets);
-        toast.success("세트를 삭제하였습니다.");
+        if(newSets.length > 1) {
+            newSets.splice(1, 1);
+            setSets(newSets);
+            toast.success("세트를 삭제하였습니다.");
+        }
+        else {
+            toast.error("세트는 최소 1개 이상이어야 합니다.");
+        }
     };
 
 
@@ -163,11 +158,22 @@ export  const ChipTestComp : React.FC<ChipTestProps> = ({host, setHost, textarea
         toast.info("API 테스트를 취소하였습니다.");
     };
 
-    // API 응답 로깅
-    const logResponse = (endpoint: string, status: number, result: string = '') => {
+    const logResponse = useCallback((endpoint: string, status: number, result: string = '') => {
         const newLog = `[${nowDate()} - ${new Date().toLocaleTimeString()}] ${endpoint} - ${status}: ${result}`;
-        setLogs([...logs, newLog]);
-    };
+
+        const dateStr = new Date().toISOString().split('T')[0];
+
+        // localStorage에서 기존 로그를 가져옴
+        const existingLogs = JSON.parse(localStorage.getItem(`${dateStr}logs`) || "[]");
+
+        // 새로운 로그 추가
+        const updatedLogs = [...existingLogs, newLog];
+
+        // localStorage 업데이트
+        localStorage.setItem(`${dateStr}logs`, JSON.stringify(updatedLogs));
+
+    }, []);
+
 
     // 칩 세트 입력값 변경 처리
     const handleInputChange = (index: number, key: keyof PriceCountSet, value: number) => {
@@ -183,13 +189,13 @@ export  const ChipTestComp : React.FC<ChipTestProps> = ({host, setHost, textarea
 
 
             <div>
-                <label>호스트 주소: </label>
+                <label>Host Adress: </label>
                 <input value={host} onChange={(e) => setHost(e.target.value)}/>
             </div>
 
             {/* 테스트 주기 설정 */}
             <div>
-                <label>주기: </label>
+                <label>Cycle: </label>
                 <input
                     type="number"
                     value={period}
@@ -199,7 +205,7 @@ export  const ChipTestComp : React.FC<ChipTestProps> = ({host, setHost, textarea
 
             {/* 딜레이 설정 */}
             <div>
-                <label>딜레이: </label>
+                <label>Delay: </label>
                 <input
                     type="number"
                     value={delay}
@@ -237,10 +243,10 @@ export  const ChipTestComp : React.FC<ChipTestProps> = ({host, setHost, textarea
 
             {/* 테스트 제어 버튼 */}
             <div className={"flex"}>
-                <button onClick={addSet}>세트 추가</button>
-                <button onClick={removeSet}>세트 삭제</button>
-                <button onClick={startTest}>테스트 시작</button>
-                <button onClick={cancelTest}>취소</button>
+                <button onClick={addSet}>Add Set</button>
+                <button onClick={removeSet}>Remove Set</button>
+                <button onClick={startTest}>Start Test</button>
+                <button onClick={cancelTest}>Cancel</button>
             </div>
         </div>
     )

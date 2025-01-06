@@ -3,10 +3,10 @@ import {toast} from "react-toastify";
 
 // 각 채널별 수량을 나타내는 타입
 type ChannelCount = {
-    ch1: number;  // 채널 1 수량
-    ch2: number;  // 채널 2 수량
-    ch3: number;  // 채널 3 수량
-    ch4: number;  // 채널 4 수량
+    ch1: number;
+    ch2: number;
+    ch3: number;
+    ch4: number;
 };
 
 // 카세트 정보를 나타내는 타입

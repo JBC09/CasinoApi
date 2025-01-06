@@ -96,13 +96,13 @@ export  const ConveyorTestComp : React.FC<ConveyorTestCompInterface> = ({host, s
             <h1>Conveyor Test</h1>
             {/* 컨베이어 수동 제어 */}
             <div className={"flex"}>
-                <button onClick={conveyorOn}>컨베이어 열기</button>
-                <button onClick={conveyorOff}>컨베이어 닫기</button>
+                <button onClick={conveyorOn}>Open Conveyor</button>
+                <button onClick={conveyorOff}>Close Conveyor</button>
             </div>
             {/* 컨베이어 자동 테스트 제어 */}
             <div className={"flex"}>
-                <button onClick={startConveyor}>테스트 시작</button>
-                <button onClick={stopConveyor}>종료</button>
+                <button onClick={startConveyor}>Start Test</button>
+                <button onClick={stopConveyor}>Cancel</button>
             </div>
 
              <textarea

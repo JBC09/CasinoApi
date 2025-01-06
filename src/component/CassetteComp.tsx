@@ -8,7 +8,6 @@ interface CassetteInterface {
 export const CassetteComp : React.FC<CassetteInterface> = ({host}) => {
 
     const selectRef = useRef<HTMLSelectElement>(null);
-    const countRef = useRef<HTMLInputElement>(null);
 
     const allEnableCassette = async () => {
         fetch(`${host}/chd/channel/enable/all`, {
@@ -65,32 +64,13 @@ export const CassetteComp : React.FC<CassetteInterface> = ({host}) => {
     }
 
 
-    const chipFromSelectChannel = async () => {
-        fetch(`${host}/chd/channel/enable`, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                id: selectRef.current?.value,
-                channel: selectRef.current?.value,
-                count: countRef.current?.value
-            })
-
-        }).then((res) => res.json())
-            .then((data) => {
-                toast(data["result"]);
-            })
-    }
 
 
     return (
         <div className={"form"}>
-            <h1>Cassette</h1>
+            <h1>Cassette Status</h1>
 
             <div className={"flex"}>
-                <div>
-                    <label>Count : </label>
-                    <input type={"number"} ref={countRef} defaultValue={10}/>
-                </div>
 
                 <select ref={selectRef}>
                     <option value={1}>Channel 1</option>
@@ -105,7 +85,6 @@ export const CassetteComp : React.FC<CassetteInterface> = ({host}) => {
                 <button className={"button"} onClick={enableCassette}>Enable Cassette</button>
                 <button className={"button"} onClick={disableCassette}>Disable Cassette</button>
                 <button className={"button"} onClick={allEnableCassette}>All Enable Cassette</button>
-                <button className={"button"} onClick={chipFromSelectChannel}>Chip From Selected Channel</button>
             </div>
         </div>
     )
